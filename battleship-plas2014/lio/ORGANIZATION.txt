@@ -1,0 +1,71 @@
+                             PROGRAM ORGANIZATION
+
+Code is trusted -- needs to be audited -- unless otherwise indicated.
+
+----------------------- safe system functions and types ------------------------
+
+Sys.hs
+
+----------------------- unsafe system functions and types ----------------------
+
+UnsafeSys.hs
+
+----------------------------- auxiliary functions ------------------------------
+
+Aux.hs
+
+--------------------------- once-only computations -----------------------------
+
+Once.hs
+
+------------------------------------ ships -------------------------------------
+
+Ship.hs
+
+--------------- small matrices -- used to represent game boards ----------------
+
+Matrix.hs
+
+----------------------- placing-phase and labeled boards -----------------------
+
+Board.hs
+
+-------------------------------- BEGIN UNTRUSTED -------------------------------
+
+----------------- untrusted supplement to small matrices module ----------------
+
+MatrixUntrusted.hs
+
+--------------------- untrusted supplement to board module ---------------------
+
+BoardUntrusted.hs
+
+------------- command-oriented processing via internet connection --------------
+
+Command.hs
+
+----------------------------- client side of player ----------------------------
+
+Client.hs
+
+-------------- shot boards -- tracking shots on opponent's board ---------------
+
+ShotBoard.hs
+
+----------------------------------- players ------------------------------------
+
+Player.hs
+
+--------------------------------- END UNTRUSTED --------------------------------
+
+-------------- communication of messages between player interfaces -------------
+
+PlayerInterfaceMsg.hs
+
+-------------- player interfaces -- each secure against the other --------------
+
+PlayerInterface.hs
+
+------------------------------- main processing --------------------------------
+
+Main.hs

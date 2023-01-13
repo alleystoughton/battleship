@@ -1,0 +1,92 @@
+(* battleship.cm *)
+
+(* implementation of Battleship in CML using access control
+   (implemented using unforgeable keys and data abstraction) to avoid
+   the need for a trusted referee *)
+
+(* code is trusted -- needs to be audited -- unless otherwise
+   indicated *)
+
+Library
+
+source(-)
+
+is
+
+$cml/cml.cm            (* CML structures *)
+$cml/basis.cm          (* CML version of Basis Library *)
+$cml-lib/smlnj-lib.cm  (* CML version of SML/NJ Library *)
+
+(* auxiliary functions *)
+
+aux.sig
+aux.sml
+
+(* unforgeable keys *)
+
+key.sig
+key.sml
+
+(* ships *)
+
+ship.sig
+ship.sml
+
+(* small matrices -- used to represent game boards *)
+
+matrix.sig
+matrix.sml
+
+(* placing-phase and locked boards *)
+
+board.sig
+board.sml
+
+(******************************* BEGIN UNTRUSTED ******************************)
+
+(* untrusted supplement to small matrices module *)
+
+matrix-untrusted.sig
+matrix-untrusted.sml
+
+(* untrusted supplement to board module *)
+
+board-untrusted.sig
+board-untrusted.sml
+
+(* command-oriented processing via internet connection *)
+
+command.sig
+command.sml
+
+(* client side of player *)
+
+client.sig
+client.sml
+
+(* shot boards -- tracking shots on opponent's board *)
+
+shot-board.sig
+shot-board.sml
+
+(* players *)
+
+player.sig
+player.sml
+
+(******************************* END UNTRUSTED ********************************)
+
+(* communication of messages between player interfaces *)
+
+player-interface-msg.sig
+player-interface-msg.sml
+
+(* player interfaces -- each secure against the other *)
+
+player-interface.sig
+player-interface.sml
+
+(* main processing *)
+
+main.sig
+main.sml

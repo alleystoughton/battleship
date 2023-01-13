@@ -1,0 +1,2 @@
+Skeleton 5
+d2f7d"OS"d"CML"Cd"UnixSignals"d"Client"d"PlayerInterfaceMsg"d"NetHostDB"d"Int"Cd"INetSock"d"RunCML"d"Socket"d"TextIO"d"Aux"Nad"Main"jh2ad"PlayerInterface1"êêè±áä¢Player"çð±ÿ‚ çð±å¢PlayerInterface"çð±ã¢PLAYER_INTERFACE"ad"PlayerInterface2"ÿ‚gp1c"MAIN"

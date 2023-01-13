@@ -1,0 +1,82 @@
+name:                battleship
+version:             0.1.0.0
+synopsis:            An implementation of Battleship using LIO to avoid the need for a trusted referee
+
+description:
+
+  /Overview/
+  .
+  This directory contains an implementation of Battleship in Haskell/LIO
+  using information flow control to avoid the need for a trusted
+  referee.  Instead, a pair of player interfaces communicate directly
+  with each other.
+  .
+  Each player interface starts a player.  Players are untrusted, and
+  each player interface is secure against the other -- even if the
+  other player interface is replaced by untrusted code, the security
+  of the first player interface is assured.
+  .
+  The program uses a client/server architecture.  Almost all of the
+  computation happens in the server, which spawns two player
+  interfaces as threads.  A client communicates with the server via a
+  TCP connection, connecting a player's client and server sides.
+  .
+  /Building/
+  .
+  See the file @README.txt@ for how to build the program and generate
+  its executable.
+  .
+  /Usage/
+  .
+  The program can be run as follows.
+  .
+  First, start the server running (optionally replace 2345 by a
+  different port):
+  .
+  @
+  .\/bin\/battleship server 2345
+  @
+  .
+  Then, each of the two players can start (replace localhost by the
+  hostname of the server, if needed) @battleship@:
+  .
+  @
+  .\/bin\/battleship client localhost 2345
+  @
+  .
+  Usage should be self-explanatory.
+  .
+  /Program Organization/
+  .
+  See the file @ORGANIZATION.txt@ for a description of the program's
+  organization. Each of the modules below is tagged with one of:
+  .
+  * /Trusted/ -- must be audited
+  .
+  * /Untrusted/ -- need not be audited
+  .
+  In addition, when a module's Safe Haskell Mode isn't \"Safe\", this
+  mode is listed:
+  .
+  * /Unsafe/ -- may not be used by Safe modules
+  .
+  * /Trustworthy/ -- may be used by Safe modules
+
+author:              Alley Stoughton
+maintainer:          alley.stoughton@ll.mit.edu
+copyright:           (c) 2014 MIT Lincoln Laboratory
+category:            Game
+build-type:          Simple
+extra-source-files:  README.txt, ORGANIZATION.txt
+cabal-version:       >=1.10
+
+executable battleship
+  main-is:             Main.hs
+  other-modules:       Aux, Board, Client, Command, Matrix, Player,
+                       PlayerInterface, PlayerInterfaceMsg, Ship, ShotBoard,
+                       Sys, UnsafeSys
+  other-extensions:    Safe, Trustworthy, Unsafe
+  build-depends:       base >=4.6, text >=0.11, lio >=0.11.4, unix >=2.6,
+                       network >=2.4
+  hs-source-dirs:      src
+  default-language:    Haskell2010

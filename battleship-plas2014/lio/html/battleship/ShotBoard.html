@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>ShotBoard</title><link href="ocean.css" rel="stylesheet" type="text/css" title="Ocean" /><script src="haddock-util.js" type="text/javascript"></script><script type="text/javascript">//<![CDATA[
+window.onload = function () {pageLoad();setSynopsis("mini_ShotBoard.html");};
+//]]>
+</script></head><body><div id="package-header"><ul class="links" id="page-menu"><li><a href="index.html">Contents</a></li><li><a href="doc-index.html">Index</a></li></ul><p class="caption">battleship</p></div><div id="content"><div id="module-header"><table class="info"><tr><th>Safe Haskell</th><td>Safe</td></tr></table><p class="caption">ShotBoard</p></div><div id="description"><p class="caption">Description</p><div class="doc"><p>This untrusted module implements shot boards, which record what has
+been learned about an opponent's board though shooting.
+</p></div></div><div id="synopsis"><p id="control.syn" class="caption expander" onclick="toggleSection('syn')">Synopsis</p><ul id="section.syn" class="hide" onclick="toggleSection('syn')"><li class="src short"><span class="keyword">data</span>  <a href="#t:Board">Board</a> </li><li class="src short"><a href="#v:empty">empty</a> :: <a href="ShotBoard.html#t:Board">Board</a></li><li class="src short"><a href="#v:miss">miss</a> :: <a href="ShotBoard.html#t:Board">Board</a> -&gt; <a href="Board.html#t:Pos">Pos</a> -&gt; <a href="ShotBoard.html#t:Board">Board</a></li><li class="src short"><a href="#v:hit">hit</a> :: <a href="ShotBoard.html#t:Board">Board</a> -&gt; <a href="Board.html#t:Pos">Pos</a> -&gt; <a href="ShotBoard.html#t:Board">Board</a></li><li class="src short"><a href="#v:sank">sank</a> :: <a href="ShotBoard.html#t:Board">Board</a> -&gt; <a href="Board.html#t:Pos">Pos</a> -&gt; <a href="Ship.html#t:Ship">Ship</a> -&gt; <a href="ShotBoard.html#t:Board">Board</a></li><li class="src short"><a href="#v:boardToStrs">boardToStrs</a> :: <a href="ShotBoard.html#t:Board">Board</a> -&gt; [<a href="file:///Library/Frameworks/GHC.framework/Versions/7.6.3-x86_64/usr/share/doc/ghc/html/libraries/base-4.6.0.1/Data-String.html#t:String">String</a>]</li></ul></div><div id="interface"><h1>Documentation</h1><div class="top"><p class="src"><span class="keyword">data</span>  <a name="t:Board" class="def">Board</a>  </p><div class="doc"><p>A shot board records what has been learned about an opponent's
+ board though shooting.
+</p><p>If one starts with the empty shot board, and then uses <code><a href="ShotBoard.html#v:miss">miss</a></code>,
+ <code><a href="ShotBoard.html#v:hit">hit</a></code> and <code><a href="ShotBoard.html#v:sank">sank</a></code> to record what is learned through shooting at a
+ sequence of distinct positions of the opponent's board, then the
+ shot board will remain consistent with the opponent's board.
+</p><p>No attempt is made to detect when a sequence of calls of <code><a href="ShotBoard.html#v:miss">miss</a></code>,
+ <code><a href="ShotBoard.html#v:hit">hit</a></code> and <code><a href="ShotBoard.html#v:sank">sank</a></code> doesn't correspond to an actual shooting history
+ -- but the resulting shot board will be meaningless in such a case.
+</p><p>A cell of a shot board will either be:
+</p><ul><li> unshot;
+</li><li> a miss -- shot, but not part of a ship;
+</li><li> an unspecified hit -- shot, and part of an unknown (possibily shot)
+   ship;
+</li><li> a specified hit -- shot, and part of a specified, sunk ship.
+</li></ul><p>In addition to the matrix of cells, the shot board records the
+ possible locations of sunk ships: for each sunk ship, it is
+ guaranteed that one of the recorded possibilities is correct.
+</p></div></div><div class="top"><p class="src"><a name="v:empty" class="def">empty</a> :: <a href="ShotBoard.html#t:Board">Board</a></p><div class="doc"><p>A shot board in which all cells are unshot.
+</p></div></div><div class="top"><p class="src"><a name="v:miss" class="def">miss</a> :: <a href="ShotBoard.html#t:Board">Board</a> -&gt; <a href="Board.html#t:Pos">Pos</a> -&gt; <a href="ShotBoard.html#t:Board">Board</a></p><div class="doc"><p>Mark a given cell as a miss; this doesn't change the record of
+ possible locations of sunk ships.
+</p></div></div><div class="top"><p class="src"><a name="v:hit" class="def">hit</a> :: <a href="ShotBoard.html#t:Board">Board</a> -&gt; <a href="Board.html#t:Pos">Pos</a> -&gt; <a href="ShotBoard.html#t:Board">Board</a></p><div class="doc"><p>Mark a given cell as an unspecified hit that didn't sink a ship;
+ this doesn't change the record of possible locations of sunk ships.
+</p></div></div><div class="top"><p class="src"><a name="v:sank" class="def">sank</a> :: <a href="ShotBoard.html#t:Board">Board</a> -&gt; <a href="Board.html#t:Pos">Pos</a> -&gt; <a href="Ship.html#t:Ship">Ship</a> -&gt; <a href="ShotBoard.html#t:Board">Board</a></p><div class="doc"><p>Indicate that shooting at the specified position sank the
+ specified ship.  The position of the cell matrix is recorded as a
+ hit of the ship, and the possible locations of the ship are added
+ to the record of possible sunk ship locations.
+</p><p>Then a loop is run, in which:
+</p><ul><li> possible sunk ship locations that are inconsistent with the cell
+   matrix are discarded;
+</li><li> when only one possible location for a sunk ship remains, the matrix
+   is updated so that the ship's cells are all specified hits for that
+   ship.
+</li></ul></div></div><div class="top"><p class="src"><a name="v:boardToStrs" class="def">boardToStrs</a> :: <a href="ShotBoard.html#t:Board">Board</a> -&gt; [<a href="file:///Library/Frameworks/GHC.framework/Versions/7.6.3-x86_64/usr/share/doc/ghc/html/libraries/base-4.6.0.1/Data-String.html#t:String">String</a>]</p><div class="doc"><p>Convert a shot board to a list of strings describing it.
+ See <a href="MatrixUntrusted.html">MatrixUntrusted</a> for the general format of the cell matrix. Cells
+ are presented as follows:
+</p><ul><li> an unshot cell is presented as a space;
+</li><li> a miss is presented as <code>&quot;*&quot;</code>;
+</li><li> an unspecified hit is presented as <code>&quot;+&quot;</code>;
+</li><li> a specified hit is presented as the uppercase version of the
+   first letter of the ship's name.
+</li></ul><p>The possible locations of sunk ships are described using the
+ <code>[a-z][a-z]:[h+v]</code> notation.
+</p></div></div></div></div><div id="footer"><p>Produced by <a href="http://www.haskell.org/haddock/">Haddock</a> version 2.13.2</p></div></body></html>

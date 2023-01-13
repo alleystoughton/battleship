@@ -1,0 +1,2 @@
+Skeleton 5
+ad"Main"jh3egp1d"CML"f5Cd"OS"d"UnixSignals"d"Client"d"NetHostDB"d"Int"Cd"INetSock"d"RunCML"d"Socket"d"TextIO"d"Aux"Nad¢Referee"jjh2ad"Player1"çğ±ä¢Player"ad"Player2"ÿ‚gp1eÿ6gp1c"REFEREE"gp1c"MAIN"

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+dist=/Users/al24216/crash/difc-coder/battleship-paper/battleship/lio
+
+cabal install --user --prefix=$dist --bindir=bin --htmldir=html --haddock-executables

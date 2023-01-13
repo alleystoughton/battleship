@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# build an SML/NJ heap image for battleship, and put it in the bin
+# directory
+
+ml-build src/battleship.cm Main.main bin/battleship-heap-image

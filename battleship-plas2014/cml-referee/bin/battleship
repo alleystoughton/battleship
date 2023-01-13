@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# start cml-referee version battleship
+
+# set sml to SML/NJ executable
+
+sml=/usr/local/bin/sml
+
+# edit the following line to set dist to the full pathname of
+# the cml-referee directory
+
+dist=/Users/al24216/crash/difc-coder/battleship-paper/battleship/cml-referee
+
+exec $sml @SMLload=$dist/bin/battleship-heap-image @SMLcmdname=$0 "$@"

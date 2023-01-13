@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>battleship</title><link href="ocean.css" rel="stylesheet" type="text/css" title="Ocean" /><script src="haddock-util.js" type="text/javascript"></script><script type="text/javascript">//<![CDATA[
+window.onload = function () {pageLoad();};
+//]]>
+</script></head><body><div id="package-header"><ul class="links" id="page-menu"><li><a href="index.html">Contents</a></li><li><a href="doc-index.html">Index</a></li></ul><p class="caption">battleship</p></div><div id="content"><div id="description"><h1>battleship</h1><div class="doc"><p><em>Overview</em>
+</p><p>This directory contains an implementation of Battleship in Haskell/LIO
+using information flow control to avoid the need for a trusted
+referee.  Instead, a pair of player interfaces communicate directly
+with each other.
+</p><p>Each player interface starts a player.  Players are untrusted, and
+each player interface is secure against the other -- even if the
+other player interface is replaced by untrusted code, the security
+of the first player interface is assured.
+</p><p>The program uses a client/server architecture.  Almost all of the
+computation happens in the server, which spawns two player
+interfaces as threads.  A client communicates with the server via a
+TCP connection, connecting a player's client and server sides.
+</p><p><em>Building</em>
+</p><p>See the file <code>README.txt</code> for how to build the program and generate
+its executable.
+</p><p><em>Usage</em>
+</p><p>The program can be run as follows.
+</p><p>First, start the server running (optionally replace 2345 by a
+different port):
+</p><pre>
+./bin/battleship server 2345
+</pre><p>Then, each of the two players can start (replace localhost by the
+hostname of the server, if needed) <code>battleship</code>:
+</p><pre>
+./bin/battleship client localhost 2345
+</pre><p>Usage should be self-explanatory.
+</p><p><em>Program Organization</em>
+</p><p>See the file <code>ORGANIZATION.txt</code> for a description of the program's
+organization. Each of the modules below is tagged with one of:
+</p><ul><li> <em>Trusted</em> -- must be audited
+</li><li> <em>Untrusted</em> -- need not be audited
+</li></ul><p>In addition, when a module's Safe Haskell Mode isn't &quot;Safe&quot;, this
+mode is listed:
+</p><ul><li> <em>Unsafe</em> -- may not be used by Safe modules
+</li><li> <em>Trustworthy</em> -- may be used by Safe modules
+</li></ul></div></div><div id="module-list"><p class="caption">Modules</p><ul><li><span class="module"><a href="Aux.html">Aux</a></span>(Trusted) Auxiliary Functions.
+</li><li><span class="module"><a href="Board.html">Board</a></span>(Trusted) Placing-phase and Labeled Boards.
+</li><li><span class="module"><a href="BoardUntrusted.html">BoardUntrusted</a></span>(Untrusted) Supplement to Board module.
+</li><li><span class="module"><a href="Client.html">Client</a></span>(Untrusted) Client Side of Player.
+</li><li><span class="module"><a href="Command.html">Command</a></span>(Untrusted) Command-oriented Processing via Internet Connection.
+</li><li><span class="module"><a href="Main.html">Main</a></span>(Trusted, Unsafe) Main Processing.
+</li><li><span class="module"><a href="Matrix.html">Matrix</a></span>(Trusted) Small Matrices -- Used to Represent Game Boards.
+</li><li><span class="module"><a href="MatrixUntrusted.html">MatrixUntrusted</a></span>(Untrusted) Supplement to Small Matrices Module.
+</li><li><span class="module"><a href="Once.html">Once</a></span>(Trusted) Once-only Computations.
+</li><li><span class="module"><a href="Player.html">Player</a></span>(Untrusted) Players.
+</li><li><span class="module"><a href="PlayerInterface.html">PlayerInterface</a></span>(Trusted) Player Interfaces, Secure Against Each Other.
+</li><li><span class="module"><a href="PlayerInterfaceMsg.html">PlayerInterfaceMsg</a></span>(Trusted) Communication of Messages between Player Interfaces.
+</li><li><span class="module"><a href="Ship.html">Ship</a></span>(Trusted) Ships Datatype, and Associated Functions.
+</li><li><span class="module"><a href="ShotBoard.html">ShotBoard</a></span>(Untrusted) Tracking shots on Opponent's Board.
+</li><li><span class="module"><a href="Sys.html">Sys</a></span>(Trusted, Trustworthy) System Functions and Types.
+</li><li><span class="module"><a href="UnsafeSys.html">UnsafeSys</a></span>(Trusted, Unsafe) System Functions and Types.
+</li></ul></div></div><div id="footer"><p>Produced by <a href="http://www.haskell.org/haddock/">Haddock</a> version 2.13.2</p></div></body></html>
