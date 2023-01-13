@@ -27,10 +27,10 @@ To compile the program, simply run
 
 It puts a heap image for battleship in the bin directory.
 
-Edit the script bin/battleship so that the variable sml is set to the
-full pathname of the sml executable (by default, /usr/local/bin/sml),
-and the variable dist is set to the full pathname of the cml-direct
-directory.
+Copy the BASH script bin/battleship-bash to bin/battleship, and edit
+bin/battleship so that the variable sml is set to the full pathname of
+the sml executable (by default, /usr/local/bin/sml), and the variable
+dist is set to the full pathname of the cml-ac directory.
 
 The program can be run as follows.
 
