@@ -22,22 +22,22 @@ To compile the program, simply run
 
 It puts a heap image for battleship in the bin directory.
 
-Edit the script bin/battleship so that the variable sml is set to
-the full pathname of the sml executable (by default, /usr/local/bin/sml),
-and the variable dist is set to the full pathname of the cml-referee
-directory.
+Copy the BASH script bin/battleship-bash to bin/battleship, and edit
+bin/battleship so that the variable sml is set to the full pathname of
+the sml executable (by default, /usr/local/bin/sml), and the variable
+dist is set to the full pathname of the cml-referee directory.
 
 The program can be run as follows.
 
 First, start the server running (optionally replace 2345 by a
 different port):
 
-bin/battleship server 2345
+./bin/battleship server 2345
 
 Then, each of the two players can start (replace localhost by the
 hostname of the server, if needed) battleship:
 
-bin/battleship client localhost 2345
+./bin/battleship client localhost 2345
 
 Usage should be self-explanatory.
 

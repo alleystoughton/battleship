@@ -1,14 +1,14 @@
 #!/bin/bash
 
-# start cml-referee version battleship
+# start cml-dac version battleship
 
 # set sml to SML/NJ executable
 
 sml=/usr/local/bin/sml
 
 # edit the following line to set dist to the full pathname of
-# the cml-referee directory
+# the cml-dac directory
 
-dist=/usr/local/share/battleship/battleship-plas2014/cml-referee
+dist=/Users/stough/papers/battleship/battleship/cml-ac
 
 exec $sml @SMLload=$dist/bin/battleship-heap-image @SMLcmdname=$0 "$@"
